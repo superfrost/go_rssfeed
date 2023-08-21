@@ -1,0 +1,27 @@
+version: '3.5'
+
+services:
+  postgres:
+    image: postgres:bullseye
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./_data/data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4:7.1
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pg@admin.org
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+      PGADMIN_LISTEN_PORT: 9656
+    ports:
+      - "9656:9656"
+    volumes:
+       - ./_data/pgadmin:/var/lib/pgadmin
