@@ -14,7 +14,7 @@ services:
       - ./_data/data:/var/lib/postgresql/data
 
   pgadmin:
-    image: dpage/pgadmin4:7.1
+    image: dpage/pgadmin4:latest
     restart: unless-stopped
     environment:
       PGADMIN_DEFAULT_EMAIL: pg@admin.org
